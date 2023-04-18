@@ -21,15 +21,16 @@ class State(BaseModel, Base):
 
     @property
     def cities(self):
+        """Return all cities from a state"""
         var = models.storage.all()
-        lista = []
+        lst = []
         result = []
         for key in var:
             city = key.replace('.', ' ')
             city = shlex.split(city)
             if (city[0] == 'City'):
-                lista.append(var[key])
-        for elem in lista:
+                lst.append(var[key])
+        for elem in lst:
             if (elem.state_id == self.id):
                 result.append(elem)
         return (result)
